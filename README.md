@@ -22,7 +22,7 @@ The service should now be reachable under localhost:8000
 
 If you run into any errors, run the following command while the container is still running and then restart the container
 ```
-docker-compose run web python manage.py makemigrations todo
+docker-compose run web python manage.py migrate
 ```
 
 ### Native Django
