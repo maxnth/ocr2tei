@@ -16,11 +16,12 @@
     <!--     Fonts and icons     -->
     <link rel="stylesheet" type="text/css"
           href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.material.min.css"/>
     <!-- CSS Files -->
     {% load static %}
     <link href="{% static "/css/material-dashboard.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "/css/font-awesome.min.css" %}" rel="stylesheet"/>
+    <link href="{% static "/css/dataTables.material.min.css" %}" rel="stylesheet"/>
+
     {% load static %}
     <link href="{% static "/css/styles.css" %}" rel="stylesheet"/>
 </head>
@@ -85,13 +86,13 @@
     <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
     <script src="{% static "/js/plugins/nouislider.min.js" %}"></script>
     <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <script src="{% static "/js/plugins/core.js" %}"></script>
     <!-- Library for adding dynamically elements -->
     <script src="{% static "/js/plugins/arrive.min.js" %}"></script>
     <!-- Ace code editor plugin -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js"></script>
+    <script src="{% static "/js/plugins/ace.js" %}"></script>
     <!-- Split.js -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.js"></script>
+    <script src="{% static "/js/plugins/split.js" %}"></script>
     <!-- Chartist JS -->
     <script src="{% static "/js/plugins/chartist.min.js" %}"></script>
     <!--  Notifications Plugin    -->
