@@ -1,0 +1,86 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+    <a class="navbar-brand" href="/">Export</a>
+{% endblock %}
+
+{% block content %}
+
+    <div class="row justify-content-around">
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-success mr-5 ml-5" id="btn-generate"><i class="material-icons">play_arrow</i>Generate
+                TEI Output
+            </button>
+            <h3 id="page-title"></h3>
+            <button type="button" class="btn btn-success mr-5 ml-5" id="btn-save"><i class="material-icons">save</i>Download
+                TEI Output
+            </button>
+        </div>
+    </div>
+
+    <div>
+        <div class="row no-gutters">
+            <!---------------------- Page select Column ----------------------------->
+            <div id="export-select" class="split col">
+                <div class="card" id="input-canvas-card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Select Pages</h4>
+                    </div>
+                    <div class="card-body">
+                        <ul id="page-select-list" class="list-group">
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <!---------------------- Export rule columns ----------------------------->
+            <div id="rule-select" class="split col">
+                <div class="card" id="input-canvas-card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Select rules</h4>
+                    </div>
+                    <div class="card-body">
+                        <h5>Simple Rules</h5>
+                        <ol id="sortable">
+                            {% for item in simple %}
+                                <li>
+                                    <label>
+                                        {{ item.name }}
+                                        <input class="simple-check" type="checkbox" value="{{ item.name }}">
+                                    </label>
+                                </li>
+                            {% endfor %}
+                        </ol>
+                        <h5>Ignore Rules</h5>
+                    </div>
+                    <ol>
+                        {% for item in ignore %}
+                            <li>
+                                <label>
+                                    {{ item.name }}
+                                    <input class="ignore-check" type="checkbox" value="{{ item.name }}">
+                                </label>
+                            </li>
+                        {% endfor %}
+                    </ol>
+                </div>
+            </div>
+            <!---------------------- Editor Column ----------------------------->
+            <div id="export-code" class="split col">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Preview</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="editor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+
+{% block page_scripts %}
+    {% load staticfiles %}
+    <script src="{% static "/js/pages/export.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,124 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+    <a class="navbar-brand" href="/">Rules</a>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-full-page d-flex">
+        <div class="d-flex">
+            <a href="/rules/"><button class="btn btn-primary btn-fab btn-fab btn-round">
+              <i class="material-icons">arrow_back</i>
+        </button></a>
+        </div>
+        <div class="container">
+            <div class="row ">
+                <div id="simple-rule-chooser" class="col-md-4 ml-auto mr-auto ">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="material-icons" style="font-size: 5em">view_agenda</i><br/>
+                            <a href="javascript:void(0)" onclick="animate_cards('simple')" class="stretched-link">Simple rule</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="ignore-rule-chooser" class="col-md-4 ml-auto mr-auto ">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="material-icons" style="font-size: 5em">visibility_off</i><br/>
+                            <a href="javascript:void(0)" onclick="animate_cards('ignore')" class="stretched-link">Ignore rule</a>
+                        </div>
+                    </div>
+                </div>
+                <div id="complex-rule-chooser" class="col-md-4 ml-auto mr-auto ">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="material-icons" style="font-size: 5em">view_quilt</i><br/>
+                            <a href="javascript:void(0)" onclick="animate_cards('complex')" class="stretched-link">Complex rule</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="simple-rule-card" class="card" style="display: none">
+                <div class="card-body">
+                   <div class="form-group">
+                    <label for="extent">Rule Name</label>
+                    <input type="text" class="form-control" id="rule-name"
+                           placeholder="Name" required>
+                   <br/><br/>
+                        <div class="row justify-content-between">
+                            <div class="col">
+                                <h4>Convert this element: </h4>
+                                <form>
+                                    <div class="form-group">
+                                        <select id="page-xml-elements" class="selectpicker" data-live-search="true"
+                                                data-style="btn-primary">
+                                            {% for value in pagexml_types %}
+                                                <option value="{{ value }}">{{ value }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col">
+                                <h4>to this element: </h4>
+                                <form>
+                                    <div class="form-group">
+                                        <select id="tei-elements" class="selectpicker" data-live-search="true"
+                                                data-style="btn-primary">
+                                            {% for key, value in tei_types.items %}
+                                                <option value="" disabled="disabled">────────────</option>
+                                                <option disabled="disabled">{{ key }}</option>
+                                                {% for elem in value %}
+                                                    {% for k, v in elem.items %}
+                                                    <option value="{{ v }}">{{ v }}</option>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                       <button onclick="create_simple_rule()" class="btn btn-success">Create Rule</button>
+                </div>
+                </div>
+            </div>
+        <div id="ignore-rule-card" class="card" style="display: none">
+            <div class="card-body">
+                                   <div class="form-group">
+                    <label for="extent">Rule Name</label>
+                    <input type="text" class="form-control" id="rule-name-ignore"
+                           placeholder="Name" required>
+                   <br/><br/>
+                                <h4>Ignore this element: </h4>
+                                <form>
+                                    <div class="form-group">
+                                        <select id="page-xml-elements-ignore" class="selectpicker" data-live-search="true"
+                                                data-style="btn-primary">
+                                            {% for value in pagexml_types %}
+                                                <option value="{{ value }}">{{ value }}</option>
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                       <button onclick="create_ignore_rule()" class="btn btn-success">Create Rule</button>
+                </div>
+            </div>
+        </div>
+                    <div id="complex-rule-card" class="card" style="display: none">
+            <div class="card-body">
+            <div class="alert alert-warning" role="alert">
+                This feature isn't implemented yet but will be delievered in future versions of this app!
+            </div>
+            </div>
+        </div>
+        </div>
+
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+{% load static %}
+        <script src="{% static "/js/pages/rule_creator.js" %}"></script>
+{% endblock %}

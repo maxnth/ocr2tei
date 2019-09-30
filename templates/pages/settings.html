@@ -1,0 +1,89 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+    <a class="navbar-brand" href="/">Settings</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card ">
+                    <div class="card-header ">
+                        <h4 class="card-title"><i class="material-icons">settings</i> Settings -
+                            <small class="description">User Settings</small>
+                        </h4>
+                    </div>
+                    <div class="card-body ">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <ul class="nav nav-pills nav-pills-rose flex-column" role="tablist">
+                                    <li class="nav-item active">
+                                        <a class="nav-link active show" data-toggle="tab" href="#link5" role="tablist">
+                                            Settings
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-8">
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="link5">
+                                        <h4>Editor Theme:</h4>
+                                        <div class="form-group">
+                                            <label for="editor-theme"></label>
+                                            <select onchange="update_editor_theme(this)" class="selectpicker"
+                                                    id="editor-theme" data-live-search="true" data-style="btn-primary">
+                                                <option value="ambiance">Ambiance</option>
+                                                <option value="chaos">Chaos</option>
+                                                <option value="chrome">Chrome</option>
+                                                <option value="clouds">Clouds</option>
+                                                <option value="clouds_midnight">Clouds Midnight</option>
+                                                <option value="cobalt">Cobalt</option>
+                                                <option value="crimson_editor">Chrimson Editor</option>
+                                                <option value="dawn">Dawn</option>
+                                                <option value="dracula">Dracula</option>
+                                                <option value="dreamweaver">Dreamweaver</option>
+                                                <option value="eclipse">Eclipse</option>
+                                                <option value="github">Github</option>
+                                                <option value="gob">Gob</option>
+                                                <option value="gruvbox">Gruvbox</option>
+                                                <option value="idle_fingers">Idle Fingers</option>
+                                                <option value="iplastic">Iplastic</option>
+                                                <option value="katzenmilch">Katzenmilch</option>
+                                                <option value="kr_theme">Kr Theme</option>
+                                                <option value="kuroir">Kuroir</option>
+                                                <option value="merbivore">Merbivore</option>
+                                                <option value="merbivore_soft">Merbivore Soft</option>
+                                                <option value="mono_industrial">Mono Industrial</option>
+                                                <option value="monokai">Monokai</option>
+                                                <option value="pastel_on_dark">Pastel On Dark</option>
+                                                <option value="solarized_dark">Solarized Dark</option>
+                                                <option value="solarized_light">Solarized Light</option>
+                                                <option value="sqlserver">SQL Server</option>
+                                                <option value="terminal">Terminal</option>
+                                                <option value="textmate">Textmate</option>
+                                                <option value="tomorrow">Tomorrow</option>
+                                                <option value="tomorrow_night">Tomorrow Night</option>
+                                                <option value="tomorrow_night_blue">Tomorrow Night Blue</option>
+                                                <option value="tomorrow_night_bright">Tomorrow Night Bright</option>
+                                                <option value="tomorrow_night_eighties">Tomorrow Night Eighties</option>
+                                                <option value="twilight">Twilight</option>
+                                                <option value="vibrant_ink">Vibrant Ink</option>
+                                                <option value="xcode">Xcode</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    {% load static %}
+    <script src="{% static "/js/pages/settings.js" %}"></script>
+{% endblock %}

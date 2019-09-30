@@ -1,0 +1,69 @@
+{% extends "layout/base.html" %}
+{% block footer %}
+{% endblock %}
+
+{% block body_content %}
+    <body class="off-canvas-sidebar">
+    {% block sidebar %}
+    {% endblock %}
+    {% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+            <div class="container">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" href="/">ocr2tei</a>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                <i class="material-icons">dashboard</i> Home
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+    {% load staticfiles %}
+    <div class="wrapper wrapper-full-page d-flex align-items-center"
+         style="background-image: url('{% static "images/books_bg.jpg" %}'); background-size: cover; background-position: top center;">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-6 ml-auto mr-auto ">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title"><i class="material-icons">fingerprint</i> Sign up</h4>
+                        </div>
+                        <div class="card-body">
+                            {% if form.errors %}
+                                <div class="alert alert-danger vibrate" role="alert">Invalid credentials!
+                                </div>
+                            {% endif %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <label for="id_username">Username:</label>
+                                <input class="form-control" type="text" name="username" maxlength="150" autofocus="" required="" id="id_username">
+                                <span class="helptext">Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.</span>
+
+                                <label for="id_email">Email address:</label>
+                                <input class="form-control" type="email" name="email" maxlength="254" id="id_email">
+
+                                <label for="id_password1">Password:</label>
+                                <input class="form-control" type="password" name="password1" required="" id="id_password1">
+                                <span class="helptext"></span>
+                                <ul><li>Your password can't be too similar to your other personal information.</li><li>Your password must contain at least 8 characters.</li><li>Your password can't be a commonly used password.</li><li>Your password can't be entirely numeric.</li></ul>
+
+                                <label for="id_password2">Password confirmation:</label>
+                                <input class="form-control" type="password" name="password2" required="" id="id_password2">
+                                <p class="helptext">Enter the same password as before, for verification.</p>
+                                <button type="submit" class="btn btn-primary">Sign up</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

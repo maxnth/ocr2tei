@@ -1,0 +1,61 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+<a class="navbar-brand" href="">Home</a>
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid">
+    {% if loggedIn %}
+        <div class="row  justify-content-center">
+            <div class="column">
+                <div class="alert alert-danger vibrate" role="alert">
+                    Please log in to work on a project!
+                </div>
+            </div>
+        </div>
+      {% endif %}
+      <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-warning card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">folder</i>
+              </div>
+              <p class="card-category">Projects</p>
+              <h3 id="AmountProjects" class="card-title"></h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">date_range</i> Just now
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-3 col-md-4 col-sm-4">
+          <div class="card card-stats">
+            <div class="card-header card-header-info card-header-icon">
+              <div class="card-icon">
+                <i class="material-icons">library_books</i>
+              </div>
+              <p class="card-category">Pages</p>
+              <h3 id="AmountPages" class="card-title"></h3>
+            </div>
+            <div class="card-footer">
+              <div class="stats">
+                <i class="material-icons">date_range</i> Just now
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+        <!-- Project Overview -->
+        {% include "snippets/project_table.html" %}
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+{% load staticfiles %}
+    <script src="{% static "/js/pages/dashboard.js" %}"></script>
+    <script src="{% static "/js/pages/projects.js" %}"></script>
+{% endblock %}

@@ -1,0 +1,61 @@
+{% extends "layout/base.html" %}
+
+{% block footer %}
+{% endblock %}
+
+{% block body_content %}
+    <body class="off-canvas-sidebar">
+    {% block sidebar %}
+    {% endblock %}
+    {% block navbar %}
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top text-white">
+            <div class="container">
+                <div class="navbar-wrapper">
+                    <a class="navbar-brand" href="/">ocr2tei</a>
+                </div>
+
+                <div class="collapse navbar-collapse justify-content-end">
+                    <ul class="navbar-nav">
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">
+                                <i class="material-icons">dashboard</i> Home
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {% endblock %}
+    {% load staticfiles %}
+    <div class="wrapper wrapper-full-page d-flex align-items-center"
+         style="background-image: url('{% static "images/books_bg.jpg" %}'); background-size: cover; background-position: top center;">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-6 ml-auto mr-auto ">
+                    <div class="card">
+                        <div class="card-header card-header-primary">
+                            <h4 class="card-title"><i class="material-icons">fingerprint</i> Login</h4>
+                        </div>
+                        <div class="card-body">
+                            {% if form.errors %}
+                                <div class="alert alert-danger vibrate" role="alert">Invalid credentials!
+                                </div>
+                            {% endif %}
+                            <form method="post">
+                                {% csrf_token %}
+                                <label for="id_username">Username</label>
+                                <input type="text" class="form-control" name="username" id="id_username" required="">
+                                <label for="id_password">Password</label>
+                                <input type="password" class="form-control" name="password" id="id_password"
+                                       required="">
+                                <button type="submit" class="btn btn-primary">Login</button>
+                                <a class="btn btn-info" href="/accounts/signup">Sign up</a>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </body>
+{% endblock %}

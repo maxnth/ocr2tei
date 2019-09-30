@@ -1,0 +1,160 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+    <a class="navbar-brand" href="">Project</a>
+{% endblock %}
+
+{% block content %}
+
+    <div id="file-content" style="display: none;"></div>
+    <div>
+    <div class="row justify-content-around">
+        <button onclick="switch_page('backwards')" type="button" class="btn btn-info" id="previous-page">Previous
+            Page
+        </button>
+        <div class="row justify-content-center">
+            <button type="button" class="btn btn-success mr-5 ml-5" id="btn-generate"><i class="material-icons">play_arrow</i>Generate
+                TEI
+            </button>
+            <h3 id="page-title"></h3>
+            <button type="button" class="btn btn-success mr-5 ml-5" id="btn-save"><i class="material-icons">save</i>Save
+            </button>
+        </div>
+
+        <button onclick="switch_page('forwards')" type="button" class="btn btn-info" id="next-page">Next Page
+        </button>
+    </div>
+    <div>
+    <div>
+        <div class="row no-gutters">
+            <!---------------------- Input Column ----------------------------->
+            <div id="page_image" class="split col">
+                <div class="card" id="input-canvas-card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Input <span style="float: right; position: relative;">
+                            <a title="Switch to XML view" class="view-switch" onclick="input_switch('image')"><i
+                                    class="material-icons">switch_camera</i></a></span>
+                        </h4>
+                    </div>
+                    <div id="page-canvas-body" class="card-body">
+                        <canvas id="page-canvas"></canvas>
+                    </div>
+                </div>
+                <div class="card" id="input-xml-card" style="display: none;">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Input <span style="float: right; position: relative;">
+                            <a title="Switch to image view" class="view-switch" onclick="input_switch('xml')"><i
+                                    class="material-icons">switch_camera</i></a></span>
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="input_editor"></div>
+                    </div>
+                </div>
+            </div>
+            <!---------------------- Region Info ----------------------------->
+            <div id="page_regions" class="split col">
+                <div class="card">
+                    <div class="card-header card-header-text card-header-primary">
+                        <div class="card-text">
+                            <h4 class="card-title">Region Options</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div id="info-placeholder">No region selected!</div>
+                        <div id="info-table" style="display: none">
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th>Region ID</th>
+                                    <th>Region Type</th>
+                                    <th>Reading Order #</th>
+                                    <th>Forced TEI conversion</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td id="data-rID"></td>
+                                    <td id="data-rType"></td>
+                                    <td id="data-ro"></td>
+                                    <td id="data-tei"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <hr>
+                            <div id="region-content">
+                                <h4>Force TEI element:</h4>
+                                <form>
+                                    <div class="form-group">
+                                        <select id="tei-elements" class="selectpicker" data-live-search="true"
+                                                data-style="btn-primary">
+                                            <option selected="selected" value="">None</option>
+                                            {% for key, value in tei_elements.items %}
+                                                <option value="" disabled="disabled">────────────</option>
+                                                <option disabled="disabled">{{ key }}</option>
+                                                {% for elem in value %}
+                                                    {% for k, v in elem.items %}
+                                                        <option value="{{ v }}">{{ v }}</option>
+                                                    {% endfor %}
+                                                {% endfor %}
+                                            {% endfor %}
+                                        </select>
+                                    </div>
+                                </form>
+                                <h4>Ignore</h4>
+                                <div class="form-check">
+                                    <label class="form-check-label">
+                                        <input id="region-ignore-check" class="form-check-input" type="checkbox"
+                                               value="">
+                                        Ignore this region
+                                        <span class="form-check-sign">
+                                              <span class="check"></span>
+                                          </span>
+                                    </label>
+                                </div>
+                                <button onclick="save_region_options()" class="btn btn-success">Save</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!---------------------- Page Options ----------------------------->
+                <div class="card">
+                    <div class="card-header card-header-text card-header-primary">
+                        <div class="card-text">
+                            <h4 class="card-title">Page Options</h4>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="form-check">
+                            <label class="form-check-label">
+                                <input id="page-ignore-check" class="form-check-input" type="checkbox" value="">
+                                Ignore
+                                <span class="form-check-sign">
+                                      <span class="check"></span>
+                                  </span>
+                            </label>
+                        </div>
+                        <button onclick="save_page_options()" type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+            <!---------------------- Editor Column ----------------------------->
+            <div id="page_code" class="split col">
+                <div class="card">
+                    <div class="card-header card-header-primary">
+                        <h4 class="card-title">Output</h4>
+                    </div>
+                    <div class="card-body">
+                        <div id="output_editor"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block page_scripts %}
+    {% load staticfiles %}
+    <script src="{% static "/js/pages/pages.js" %}"></script>
+    <script src="{% static "/js/pages/projects.js" %}"></script>
+{% endblock %}

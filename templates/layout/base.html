@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+    {% block title %}
+        <title>
+            ocr2tei
+        </title>
+    {% endblock %}
+    {% load static %}
+    <link rel="shortcut icon" type="image/png" href="{% static 'ico/favicon.png' %}"/>
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no'
+          name='viewport'/>
+    <!--     Fonts and icons     -->
+    <link rel="stylesheet" type="text/css"
+          href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.material.min.css"/>
+    <!-- CSS Files -->
+    {% load static %}
+    <link href="{% static "/css/material-dashboard.min.css" %}" rel="stylesheet"/>
+    {% load static %}
+    <link href="{% static "/css/styles.css" %}" rel="stylesheet"/>
+</head>
+{% block body_content %}
+    <body class="">
+    <div class="wrapper ">
+        {% block sidebar %}
+            {% include "layout/sidebar.html" %}
+        {% endblock %}
+        <div class="main-panel">
+            {% block navbar %}
+                {% include "layout/navbar.html" %}
+            {% endblock %}
+            <div class="content">
+                <div class="pre-loaded">
+                    <div class="loader">
+                        <svg width="1em" height="1em">
+                            <circle cx="0.5em" cy="0.5em" r="0.45em"></circle>
+                        </svg>
+                    </div>
+                </div>
+                <div class="inner-content">
+                    {% block content %}
+                    {% endblock %}
+                </div>
+            </div>
+            {% block footer %}
+                {% include "layout/footer.html" %}
+            {% endblock %}
+        </div>
+        <a href="javascript:" id="return-to-top"><i class="material-icons">arrow_drop_up</i></a>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {% load static %}
+    <script src="{% static "/js/core/jquery.min.js" %}"></script>
+    <script src="{% static "/js/core/popper.min.js" %}"></script>
+    <script src="{% static "/js/core/bootstrap-material-design.min.js" %}"></script>
+    <script src="{% static "/js/plugins/perfect-scrollbar.jquery.min.js" %}"></script>
+    <!-- Plugin for cookies  -->
+    <script src="{% static "/js/plugins/js.cookie.min.js" %}"></script>
+    <script src="{% static "/js/snippets/csrf_ajax_setup.js" %}"></script>
+    <!-- Plugin for the momentJs  -->
+    <script src="{% static "/js/plugins/moment.min.js" %}"></script>
+    <!--  jQuery UI -->
+    <script src="{% static "/js/plugins/jquery-ui.js" %}"></script>
+    <!--  Plugin for Sweet Alert -->
+    <script src="{% static "/js/plugins/sweetalert2.js" %}"></script>
+    <!-- Forms Validations Plugin -->
+    <script src="{% static "/js/plugins/jquery.validate.min.js" %}"></script>
+    <!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+    <script src="{% static "/js/plugins/bootstrap-selectpicker.js" %}"></script>
+    <!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+    <script src="{% static "/js/plugins/bootstrap-datetimepicker.min.js" %}"></script>
+    <!--  DataTables.net Plugin, full documentation here: https://datatables.net/  -->
+    <script src="{% static "/js/plugins/jquery.dataTables.min.js" %}"></script>
+    <!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+    <script src="{% static "/js/plugins/bootstrap-tagsinput.js" %}"></script>
+    <!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+    <script src="{% static "/js/plugins/jasny-bootstrap.min.js" %}"></script>
+    <!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+    <script src="{% static "/js/plugins/nouislider.min.js" %}"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11, UC Browser and Android browser support SweetAlert -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
+    <!-- Library for adding dynamically elements -->
+    <script src="{% static "/js/plugins/arrive.min.js" %}"></script>
+    <!-- Ace code editor plugin -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.4.5/ace.js"></script>
+    <!-- Split.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.5.11/split.js"></script>
+    <!-- Chartist JS -->
+    <script src="{% static "/js/plugins/chartist.min.js" %}"></script>
+    <!--  Notifications Plugin    -->
+    <script src="{% static "/js/plugins/bootstrap-notify.js" %}"></script>
+    <!-- jQuery Sortable -->
+    <script src="{% static "/js/plugins/jquery-sortable.min.js" %}"></script>
+    <!-- Fabric.js plugin -->
+    <script src="{% static "js/plugins/fabric.min.js" %}"></script>
+    <!-- JsPlumb CE plugin -->
+    <script src="{% static "js/plugins/jsplumb.min.js" %}"></script>
+    <!-- Control Center for Material Dashboard: parallax effects, scripts for the example pages etc -->
+    <script src="{% static "js/material-dashboard.js" %}"></script>
+    <!-- Advances checkbox capabilities -->
+    <script src="{% static "js/plugins/jquery.checkboxes.min.js" %}"></script>
+
+    <script src="{% static "/js/navbar.js" %}"></script>
+    <script src="{% static "/js/script.js" %}"></script>
+    <script src="{% static "/js/snippets/project_table.js" %}"></script>
+    {% block page_scripts %}
+    {% endblock %}
+{% endblock %}
+</body>
+</html>

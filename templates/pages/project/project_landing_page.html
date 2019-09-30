@@ -1,0 +1,21 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+    <a class="navbar-brand" href="">Project</a>
+{% endblock %}
+
+{% block content %}
+    <div class="row  justify-content-center">
+        <div class="column">
+            <div class="alert alert-danger vibrate" role="alert">
+                No project loaded!
+            </div>
+        </div>
+    </div>
+    <div class="row  justify-content-center">
+        <div class="column">
+            <h3>Load an existing project</h3>
+        </div>
+    </div>
+    {% include "snippets/project_table.html" %}
+{% endblock %}

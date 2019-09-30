@@ -1,0 +1,79 @@
+<div class="sidebar" data-color="purple" data-background-color="black">
+    <div class="logo">
+        <a href="" class="simple-text logo-mini">
+
+        </a>
+        <a href="/" class="simple-text logo-normal">
+            <span class="sidebar-normal">ocr2tei</span>
+        </a>
+    </div>
+    <div class="sidebar-wrapper">
+        {% if user.is_authenticated %}
+            <div class="user">
+                <div class="photo">
+                    <img src="{{ user.profile_picture.url }}"/>
+                </div>
+                <div class="user-info">
+                    <a href="#" class="nav-link username">
+                  <span>
+                    {{ user.username }}
+                  </span>
+                    </a>
+                </div>
+            </div>
+        {% endif %}
+        <ul class="nav">
+            <li class="nav-item {% if active == 'dashboard' %}active{% endif %}">
+                <a class="nav-link" href="/">
+                    <i class="material-icons">dashboard</i>
+                    <p>Home</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" data-toggle="collapse" href="#projectCollapse">
+                    <i class="material-icons">folder</i>
+                    <p>Project <b class="caret"></b></p>
+                </a>
+                <div class="collapse {% if active in "overview, workflow, export" %}show{% endif %}"
+                     id="projectCollapse">
+                    <ul class="nav">
+                        <li class="nav-item {% if active == 'overview' %}active{% endif %}">
+                            <a class="nav-link" href="/project/{{ user.pid }}">
+                                <span class="sidebar-mini"> O </span>
+                                <span class="sidebar-normal"> Overview </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {% if active == 'workflow' %}active{% endif %}">
+                            <a class="nav-link"
+                               href="/project/page/{% if user.pid %}{{ user.pid }}/workflow{% endif %}">
+                                <span class="sidebar-mini"> W </span>
+                                <span class="sidebar-normal"> Workflow </span>
+                            </a>
+                        </li>
+                        <li class="nav-item {% if active == 'export' %}active{% endif %}">
+                            <a class="nav-link"
+                               href="/project/export/{% if user.pid %}{{ user.pid }}/export{% endif %}">
+                                <span class="sidebar-mini"> E </span>
+                                <span class="sidebar-normal"> Export </span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li class="nav-item {% if active == 'rules' %}active{% endif %}">
+                <a class="nav-link" href="/rules">
+                    <i class="material-icons">filter_list</i>
+                    <p>Rules</p>
+                </a>
+            </li>
+                {% if user.is_authenticated %}
+            <li class="nav-item {% if active == 'settings' %}active{% endif %}">
+                <a class="nav-link" href="/settings">
+                    <i class="material-icons">settings</i>
+                    <p>Settings</p>
+                </a>
+            </li>
+        {% endif %}
+        </ul>
+    </div>
+</div>

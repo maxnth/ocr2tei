@@ -1,0 +1,73 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+    <a class="navbar-brand" href="/">Rules</a>
+{% endblock %}
+
+{% block content %}
+            <div class="d-flex align-items-center">
+            <a href="/rules/"><button class="btn btn-primary btn-fab btn-fab btn-round">
+              <i class="material-icons">arrow_back</i>
+        </button></a>
+        </div>
+        <div class="wrapper wrapper-full-page d-flex justify-content-center">
+            <div class="card text-center" style="width: 60%; height: 70vh;">
+                <div class="card-header card-header-success">
+                     <h4 class="card-title">Browse Rules</h4>
+                </div>
+                <div class="card-body" style="overflow-y: auto;">
+                    {% if not simple and not ignore %}
+                    <div class="container text-center" id="rule-list">
+                    <div class="d-flex justify-content-center">
+                    <p>There aren't any rules yet in the database.</p></div>
+                  <div class="d-flex justify-content-center">
+                    <a href="/rules/creator"><button class="btn btn-primary btn-round">
+                      <i class="material-icons">add_circle</i> Create rules
+                    </button></a></div>
+                    </div>
+                    {% else %}
+                        <h4>Simple rules</h4>
+                            {% for rule in simple %}
+                                <div class="card rule-info-card">
+                                    <div class="card-header card-header-primary">
+                                        <div class="col-auto mr-auto">
+                                        <h4 class="card-title">{{ rule.name }}</h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i onclick="delete_rule('simple', '{{ rule.name }}')" class="material-icons hoverIcon" id="reloadTable">delete</i>
+                                        </div>
+                                    </div>
+                                    <div class="card-body">
+                                        This rule converts <b>{{ rule.base }}</b> to <b>{{ rule.target }}</b>.
+                                    </div>
+                                </div>
+                            {% endfor %}
+                        <hr>
+                        <h4>Ignore Rules</h4>
+                          {% for rule in ignore %}
+                                <div class="card rule-info-card">
+                                    <div class="card-header card-header-info">
+                                        <div class="col-auto mr-auto">
+                                        <h4 class="card-title">{{ rule.name }}</h4>
+                                        </div>
+                                        <div class="col-auto">
+                                            <i onclick="delete_rule('ignore', '{{ rule.name }}')" class="material-icons hoverIcon" id="reloadTable">delete</i>
+                                        </div>
+                                    </div>
+
+                                    <div class="card-body">
+                                        This rule ignores all <b>{{ rule.base }}</b> regions.
+                                    </div>
+                                </div>
+                            {% endfor %}
+                    {% endif %}
+                </div>
+                </div>
+            </div>
+        </div>
+{% endblock %}
+
+{% block page_scripts %}
+{% load static %}
+        <script src="{% static "/js/pages/rule_browser.js" %}"></script>
+{% endblock %}

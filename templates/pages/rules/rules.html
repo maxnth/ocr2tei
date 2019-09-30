@@ -1,0 +1,30 @@
+{% extends "pages/../layout/base.html" %}
+
+{% block page_title %}
+    <a class="navbar-brand" href="/">Rules</a>
+{% endblock %}
+
+{% block content %}
+    <div class="wrapper wrapper-full-page d-flex align-items-center">
+        <div class="container">
+            <div class="row ">
+                <div class="col-md-5 ml-auto mr-auto ">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="material-icons" style="font-size: 5em">add</i><br/>
+                            <a href="/rules/creator" class="stretched-link">Craft new rules</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5 ml-auto mr-auto ">
+                    <div class="card text-center">
+                        <div class="card-body">
+                            <i class="material-icons" style="font-size: 5em">search</i><br/>
+                            <a href="/rules/browser" class="stretched-link">Browse rules</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
